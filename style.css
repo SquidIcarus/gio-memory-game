@@ -1,0 +1,13 @@
+header {
+    display: flex;
+    justify-content: center;
+}
+
+#start-btn {
+    padding: 10px 25px;
+    font-size: 20px;
+    margin-bottom: 15px;
+    cursor: grab;
+    border-style: solid;
+    border-radius: 15px;
+}

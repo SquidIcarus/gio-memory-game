@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script defer src="./app.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <title>GIO Memory Arpeggiator</title>
 </head>
+
 <body>
-    
+    <header>
+        <h1>GIO Memory Arpeggiator</h1>
+    </header>
+
+    <main>
+        <button id="start-btn">Go!</button>
+
+        <div class="controls">
+            <span class="sequence-count">Arpeggio Length:</span>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <div class="game-body">
+            <div class="piano">
+                <div id="black-keys" class="black-keys"></div>
+                <div id="white-keys" class="white-keys"></div>
+            </div>
+
+            <div id="note-display" class="note-display"></div>
+        </div>
+    </main>
 </body>
+
 </html>
