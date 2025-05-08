@@ -1,13 +1,49 @@
 header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.header1 {
+    display: flex;
     justify-content: center;
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 100px;
+    margin-bottom: 2px;
+}
+
+.header2 {
+    display: flex;
+    justify-content: center;
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+    margin-top: 2px;
 }
 
 #start-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 10px 25px;
-    font-size: 20px;
+    font-size: 60px;
     margin-bottom: 15px;
     cursor: grab;
     border-style: solid;
     border-radius: 15px;
+    background-color: rgb(40, 127, 66);
+    border-width: 3px;
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.controls {
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
 }
