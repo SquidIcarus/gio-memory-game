@@ -4,6 +4,7 @@ header {
     align-items: center;
 
 }
+
 .header1 {
     display: flex;
     justify-content: center;
@@ -47,3 +48,4 @@ header {
     font-style: normal;
     font-size: 30px;
 }
+
