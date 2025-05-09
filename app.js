@@ -24,6 +24,11 @@ const displayNoteElem = document.getElementById('display-note');
 
 /*-------------------------------- Functions --------------------------------*/
 
+function handleStartBtn(event) {
+    console.log(event);
+}
 
 
 /*----------------------------- Event Listeners -----------------------------*/
+
+startBtnElem.addEventListener('click', handleStartBtn);
