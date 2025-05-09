@@ -25,32 +25,4 @@ header {
     margin-top: 2px;
 }
 
-#start-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 25px;
-    font-size: 60px;
-    margin-bottom: 15px;
-    cursor: grab;
-    border-style: solid;
-    border-radius: 15px;
-    background-color: rgb(40, 127, 66);
-    border-width: 3px;
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-}
-
-#start-btn:active {
-    transform: scale(0.95);
-    background-color: rgb(30, 107, 56);
-}
-
-.controls {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 30px;
-}
 
