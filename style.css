@@ -25,4 +25,79 @@ header {
     margin-top: 2px;
 }
 
+#start-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 25px;
+    font-size: 60px;
+    margin-bottom: 15px;
+    cursor: grab;
+    border-style: solid;
+    border-radius: 15px;
+    background-color: rgb(40, 127, 66);
+    border-width: 3px;
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
 
+#start-btn:active {
+    transform: scale(0.95);
+    background-color: rgb(30, 107, 56);
+}
+
+.controls {
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.piano {
+    position: relative;
+    width: 500px;
+    height: 200px;
+    margin: 20px auto;
+    background: #333;
+    border-radius: 5px;
+  }
+  
+  .white-keys {
+    display: flex;
+    height: 100%;
+  }
+  
+  .black-keys {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    display: flex;
+    padding: 0 2%;
+  }
+  
+  .white-key {
+    flex: 1;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+    margin: 0 1px;
+    z-index: 1;
+  }
+  
+  .black-key {
+    width: 8%;
+    height: 100%;
+    background: black;
+    border-radius: 0 0 5px 5px;
+    margin: 0 2%;
+    z-index: 2;
+  }
+  
+  .black-key:nth-child(1) { margin-left: 8%; }   /* C# */
+  .black-key:nth-child(2) { margin-left: 5%; }  /* D# */
+  .black-key:nth-child(3) { margin-left: 17%; } /* F# */
+  .black-key:nth-child(4) { margin-left: 5%; }  /* G# */
+  .black-key:nth-child(5) { margin-left: 4%; }  /* A# */

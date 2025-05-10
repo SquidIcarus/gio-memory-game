@@ -6,7 +6,6 @@ const pianoNotes = [
     { note: 'D', type: 'white' },
     { note: 'D#', type: 'black' },
     { note: 'E', type: 'white' },
-    { note: 'E#', type: 'black' },
     { note: 'F', type: 'white' },
     { note: 'F#', type: 'black' },
     { note: 'G', type: 'white' },
@@ -29,8 +28,8 @@ console.log(pianoNotes);
 const startBtnElem = document.getElementById('start-btn');
 const arpLengthElem = document.querySelector('.sequence-count');
 const msgElem = document.getElementById('message');
-const blackNotesElem = document.getElementById('black-keys');
-const whiteNotesElem = document.getElementById('white-keys');
+const blackKeysElem = document.getElementById('black-keys');
+const whiteKeysElem = document.getElementById('white-keys');
 const displayNoteElem = document.getElementById('display-note');
 
 // console.log();
@@ -41,14 +40,7 @@ function handleStartBtn(event) {
     console.log(event);
 };
 
-function pianoSequencer() {
-    pianoNotes.forEach(noteObj => {
-        
-    })
-}
 
+/*----------------------------- Event Listeners -----------------------------*/
 
-
-        /*----------------------------- Event Listeners -----------------------------*/
-
-        startBtnElem.addEventListener('click', handleStartBtn);
+startBtnElem.addEventListener('click', handleStartBtn);
