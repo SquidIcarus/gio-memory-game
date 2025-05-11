@@ -96,28 +96,43 @@ header {
     z-index: 2;
 }
 
+/* C# */
 .black-key:nth-child(1) {
     margin-left: 8%;
 }
 
-/* C# */
+/* D# */
 .black-key:nth-child(2) {
     margin-left: 5%;
 }
 
-/* D# */
+/* F# */
 .black-key:nth-child(3) {
     margin-left: 17%;
 }
 
-/* F# */
+/* G# */
 .black-key:nth-child(4) {
     margin-left: 5%;
 }
 
-/* G# */
+/* A# */
 .black-key:nth-child(5) {
-    margin-left: 4%;
+    margin-left: 5%;
 }
 
-/* A# */
+.display-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 25px;
+    font-size: 60px;
+    margin-bottom: 15px;
+    cursor: grab;
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 3px;
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
