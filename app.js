@@ -21,7 +21,7 @@ console.log(pianoNotes);
 
 /*-------------------------------- Variables --------------------------------*/
 
-
+let currentNote = null;          // a place to store the current note that the user needs to click
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -47,26 +47,37 @@ function getRandomNote() {                                               // func
 };
 
 function handleStartBtn() {                                              // function to handle the start button
-    const randomNote = getRandomNote();                                  // stores the getRandomNote function in the variable randomNote                       
-    displayNoteElem.textContent = randomNote;                            // renders the randomNote onto the page through the displayNoteElem              
-    console.log(`computer played: ${randomNote}`)
+    currentNote = getRandomNote()                                       // stores the getRandomNote function in the variable currentNote                      
+    displayNoteElem.textContent = currentNote;                            // renders the currentNote onto the page through the displayNoteElem              
+    console.log(`computer played: ${currentNote}`)
 };
 
 function handleWhiteKeys(event) {                                        // function to handle pressing the white keys
     if (event.target.classList.contains('white-key')) {                  // if the button pressed containst the classList "white-key"
         const note = event.target.getAttribute('data-note');             // store the attribute of 'data-note' in the variable 'note'
-        console.log(note); // test
         displayNoteElem.textContent = note;                              // renders the note on the page   
+
+        if (currentNote && note === currentNote) {                                    // if note played === the generated note
+            console.log(`CORRECT! cpu played: ${currentNote}, you clicked: ${note}`); // log correct!
+        } else if (currentNote !== note) {                                            // else if, note played !== the generated note  
+            console.log(`INCORRECT! cpu played: ${currentNote}, you clicked: ${note}`)    // log incorrect!  
+        }
     }
 };
 
 function handleBlackKeys(event) {                                        // function to handle pressing the black keys
     if (event.target.classList.contains('black-key')) {                  // same logic as white keys  
-        const note = event.target.getAttribute('data-note');             
-        console.log(note); // test
-        displayNoteElem.textContent = note;                                 
+        const note = event.target.getAttribute('data-note');
+        displayNoteElem.textContent = note;
+        if (currentNote && note === currentNote) {
+            console.log(`CORRECT! cpu played: ${currentNote}, you clicked: ${note}`);
+        } else if (currentNote !== note) {
+            console.log(`INCORRECT! cpu played: ${currentNote}, you clicked: ${note}`)
+        }
     }
-}
+};
+
+
 
 
 /*----------------------------- Event Listeners -----------------------------*/
