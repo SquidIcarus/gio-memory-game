@@ -32,7 +32,12 @@ const blackKeysElem = document.getElementById('black-keys');
 const whiteKeysElem = document.getElementById('white-keys');
 const displayNoteElem = document.getElementById('display-note');
 
-// console.log();
+// console.log(startBtnElem);
+// console.log(arpLengthElem);
+// console.log(msgElem);
+// console.log(blackKeysElem);
+// console.log(whiteKeysElem);
+// console.log(displayNoteElem);
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -40,7 +45,19 @@ function handleStartBtn(event) {
     console.log(event);
 };
 
+function handleWhiteKeys(event) {
+    console.log(event);
+};
+
+function handleBlackKeys(event) {
+    console.log(event);
+}
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 startBtnElem.addEventListener('click', handleStartBtn);
+
+whiteKeysElem.addEventListener('click', handleWhiteKeys);
+
+blackKeysElem.addEventListener('click', handleBlackKeys);

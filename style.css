@@ -61,14 +61,14 @@ header {
     margin: 20px auto;
     background: #333;
     border-radius: 5px;
-  }
-  
-  .white-keys {
+}
+
+.white-keys {
     display: flex;
     height: 100%;
-  }
-  
-  .black-keys {
+}
+
+.black-keys {
     position: absolute;
     top: 0;
     left: 0;
@@ -76,28 +76,48 @@ header {
     height: 60%;
     display: flex;
     padding: 0 2%;
-  }
-  
-  .white-key {
+}
+
+.white-key {
     flex: 1;
     background: white;
     border: 1px solid #ccc;
     border-radius: 0 0 5px 5px;
     margin: 0 1px;
     z-index: 1;
-  }
-  
-  .black-key {
+}
+
+.black-key {
     width: 8%;
     height: 100%;
     background: black;
     border-radius: 0 0 5px 5px;
     margin: 0 2%;
     z-index: 2;
-  }
-  
-  .black-key:nth-child(1) { margin-left: 8%; }   /* C# */
-  .black-key:nth-child(2) { margin-left: 5%; }  /* D# */
-  .black-key:nth-child(3) { margin-left: 17%; } /* F# */
-  .black-key:nth-child(4) { margin-left: 5%; }  /* G# */
-  .black-key:nth-child(5) { margin-left: 4%; }  /* A# */
+}
+
+.black-key:nth-child(1) {
+    margin-left: 8%;
+}
+
+/* C# */
+.black-key:nth-child(2) {
+    margin-left: 5%;
+}
+
+/* D# */
+.black-key:nth-child(3) {
+    margin-left: 17%;
+}
+
+/* F# */
+.black-key:nth-child(4) {
+    margin-left: 5%;
+}
+
+/* G# */
+.black-key:nth-child(5) {
+    margin-left: 4%;
+}
+
+/* A# */
