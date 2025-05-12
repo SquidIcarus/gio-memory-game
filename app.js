@@ -44,30 +44,35 @@ const displayNoteElem = document.getElementById('display-note');
 
 function getRandomNote() {                                               // function to generate a random note
     const randomIndex = Math.floor(Math.random() * pianoNotes.length);   // stores the random note using Math.floor method in randomIndex
-    return pianoNotes[randomIndex].note;                                 // returns the note being played
+    return pianoNotes[randomIndex].note;                                 // returns the note being played from the .note property of the pianoNotes array of note objects
 };
 
 function handleStartBtn() {                                              // function to handle the start button
-    currentNote = getRandomNote()                                         // stores the getRandomNote function in the variable currentNote
-    currentArp.push(currentNote);                                       // adds the currentNote to the currentArp array                                                    
-    displayNoteElem.textContent = currentNote;                            // renders the currentNote onto the page through the displayNoteElem              
-    console.log(`cpu played: ${currentNote}`)
+    currentNote = null;                                                  // resets game (start with no note)
+    currentArp = [];                                                     // resets game (start with empty array)
+    currentNote = getRandomNote();                                       // a random note is stored into currentNote with the getRandomNote() function
+    currentArp.push(currentNote);                                        // adds the currentNote to the currentArp array                                                    
+    displayNoteElem.textContent = currentNote;                           // renders the currentNote onto the page through the displayNoteElem              
+    console.log(`cpu started with: ${currentNote}`)
     console.log(`current arpeggio: ${currentArp}`);
-
-    
 };
+
+function handleCorrectNote() {                                         // function to handle next step when correct note is pressed
+    currentNote = getRandomNote();                                     // currentNote is now a new random note using getRandomNote
+    currentArp.push(currentNote);                                      // the new note is stored in the currentArp array 
+    displayNoteElem.textContent = currentNote;
+    console.log(`cpu played new note: ${currentNote}`)
+    console.log(currentArp);
+}
 
 function handleWhiteKeys(event) {                                        // function to handle pressing the white keys
     if (event.target.classList.contains('white-key')) {                  // if the button pressed containst the classList "white-key"
         const note = event.target.getAttribute('data-note');             // store the attribute of 'data-note' in the variable 'note'
         displayNoteElem.textContent = note;                              // renders the note on the page   
 
-        if (currentNote && note === currentNote) {                                        // if note played === the generated note
-            console.log(`CORRECT! cpu played: ${currentNote}, you clicked: ${note}`);     // log correct!
-            currentNote = getRandomNote();                                                // currentNote is a new note with getRandomNote()
-            displayNoteElem.textContent = note;                                           // renders the new note                      
-            console.log(`cpu played ${currentNote}`)                                      // logs the new note to play
-            console.log(`current arpeggio: ${currentArp}`);                               // logs the current arpeggio        
+        if (currentNote && note === currentNote) {                                        // if note played === the generated note (currentNote)
+            console.log(`CORRECT ${note}`);                                              // log correct!
+            handleCorrectNote();
         } else if (currentNote !== note) {                                                // else if, note played !== the generated note  
             console.log(`INCORRECT! cpu played: ${currentNote}, you clicked: ${note}`)    // log incorrect!  
         }
@@ -79,11 +84,8 @@ function handleBlackKeys(event) {                                        // func
         const note = event.target.getAttribute('data-note');
         displayNoteElem.textContent = note;
         if (currentNote && note === currentNote) {
-            console.log(`CORRECT! cpu played: ${currentNote}, you clicked: ${note}`);
-            currentNote = getRandomNote();
-            displayNoteElem.textContent = note;
-            console.log(`cpu played ${currentNote}`)
-            console.log(`current arpeggio: ${currentArp}`);
+            console.log(`CORRECT! ${note}`);
+            handleCorrectNote();
         } else if (currentNote !== note) {
             console.log(`INCORRECT! cpu played: ${currentNote}, you clicked: ${note}`)
         }
