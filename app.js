@@ -70,22 +70,27 @@ function handleCorrectNote() {                                         // functi
 
 
 function handleKeys(event) {
+
+    if (cpuArp.length === 0) return;                                                                            // Only proceed if the game has started (cpuArp has notes)
+
     if (event.target.classList.contains('white-key') || event.target.classList.contains('black-key')) {
         const note = event.target.getAttribute('data-note');
         playerArp.push(note);
         displayNoteElem.textContent = note;
-        // console.log(note);
-        // console.log(playerArp);
 
-        if (playerArp.length === cpuArp.length) {
-            console.log(`${note} is correct!`);
+        if (note !== cpuArp[playerArp.length - 1]) {                                                            // if player input !== the last note of the cpuArp
+            console.log(`WRONG NOTE, expected ${cpuArp[playerArp.length - 1]} you pressed ${note}`);
+            playerArp = [];                                                                                     // Resets player sequence
+            return;                                                                                             // stops the function if the note played !== the last note of the array
+        }
+
+        if (playerArp.length === cpuArp.length) {                                                               // if player array === cpu array
+            console.log(`CORRECT`);                                                                             // correct!
+            playerArp = [];
             handleCorrectNote();
-        // } else {
-        //     console.log(`you pressed the wrong note`);
-
         }
     }
-};
+}
 
 // function handleBlackKeys(event) {
 //     if (event.target.classList.contains('black-key')) {
