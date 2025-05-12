@@ -21,6 +21,7 @@ const pianoNotes = [
 let currentNote = null;
 let cpuArp = [];
 let playerArp = [];
+let computerSpeed = 500;  // set the computer speed to 500ms
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -72,15 +73,18 @@ function handleStartBtn() {
 
 function handleCorrectNote() {
     arpLengthElem.textContent = `Arpeggio Length: ${cpuArp.length}`;
-    currentNote = getRandomNote();
-    cpuArp.push(currentNote);
-    displayNoteElem.textContent = currentNote;
-    keyLight(currentNote);
-    console.log(`cpuArp so far ${cpuArp}`)
-    setTimeout(() => {                                                  // function to only display the note for 2 sec
-        displayNoteElem.textContent = '';                               //  sets the display to an empty string
-        keyLightOff(currentNote);
-    }, 500);
+
+    setTimeout(() => {                                                     // wraps the block in the function to set the computer speed to 500
+        currentNote = getRandomNote();
+        cpuArp.push(currentNote);
+        displayNoteElem.textContent = currentNote;
+        keyLight(currentNote);
+        console.log(`cpuArp so far ${cpuArp}`)
+        setTimeout(() => {
+            displayNoteElem.textContent = '';
+            keyLightOff(currentNote);
+        }, 500);
+    }, computerSpeed);                                                      // variable that stores the speed, currently at 500
 };
 
 
