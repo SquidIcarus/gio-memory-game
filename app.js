@@ -22,7 +22,8 @@ console.log(pianoNotes);
 /*-------------------------------- Variables --------------------------------*/
 
 let currentNote = null;          // a place to store the current note that the user needs to click
-let currentArp = [];            // a place to store the sequence in order starting with an empty array
+let cpuArp = [];                 // a place to store the computer generated sequence in order starting with an empty array
+let playerArp = [];              // a place to store the player generated sequence in order starting with an empty array
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -48,21 +49,23 @@ function getRandomNote() {                                               // func
 };
 
 function handleStartBtn() {                                              // function to handle the start button
-    currentNote = null;                                                  // resets game (start with no note)
-    currentArp = [];                                                     // resets game (start with empty array)
+    currentNote = null;                                                  // resets game (there is no current note)
+    cpuArp = [];                                                         // resets game, computer starts with empty arpeggio array
+    playerArp = [];                                                      // resets game, player starts with empty arpeggio array
     currentNote = getRandomNote();                                       // a random note is stored into currentNote with the getRandomNote() function
-    currentArp.push(currentNote);                                        // adds the currentNote to the currentArp array                                                    
+    cpuArp.push(currentNote);                                            // adds the currentNote to the cpuArp array                                                    
     displayNoteElem.textContent = currentNote;                           // renders the currentNote onto the page through the displayNoteElem              
     console.log(`cpu started with: ${currentNote}`)
-    console.log(`current arpeggio: ${currentArp}`);
+    console.log(`current arpeggio: ${cpuArp}`);
 };
 
 function handleCorrectNote() {                                         // function to handle next step when correct note is pressed
     currentNote = getRandomNote();                                     // currentNote is now a new random note using getRandomNote
-    currentArp.push(currentNote);                                      // the new note is stored in the currentArp array 
+    cpuArp.push(currentNote);                                          // the new note is stored in the cpuArp array 
     displayNoteElem.textContent = currentNote;
     console.log(`cpu played new note: ${currentNote}`)
-    console.log(currentArp);
+    console.log(`cpu arp: ${cpuArp}`);
+    console.log(`player arp: ${playerArp}`)
 }
 
 function handleWhiteKeys(event) {                                        // function to handle pressing the white keys
@@ -70,7 +73,8 @@ function handleWhiteKeys(event) {                                        // func
         const note = event.target.getAttribute('data-note');             // store the attribute of 'data-note' in the variable 'note'
         displayNoteElem.textContent = note;                              // renders the note on the page   
 
-        if (currentNote && note === currentNote) {                                        // if note played === the generated note (currentNote)
+        if (currentNote && note === currentNote) {                                       // if note played === the generated note (currentNote)
+            playerArp.push(note);                                                        // player note is added to the players arp array
             console.log(`CORRECT ${note}`);                                              // log correct!
             handleCorrectNote();
         } else if (currentNote !== note) {                                                // else if, note played !== the generated note  
@@ -83,7 +87,9 @@ function handleBlackKeys(event) {                                        // func
     if (event.target.classList.contains('black-key')) {                  // same logic as white keys  
         const note = event.target.getAttribute('data-note');
         displayNoteElem.textContent = note;
+
         if (currentNote && note === currentNote) {
+            playerArp.push(note);
             console.log(`CORRECT! ${note}`);
             handleCorrectNote();
         } else if (currentNote !== note) {
