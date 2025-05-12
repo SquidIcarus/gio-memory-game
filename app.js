@@ -15,15 +15,12 @@ const pianoNotes = [
     { note: 'B', type: 'white' }
 ];
 
-// console.log(pianoNotes);
-
-
 
 /*-------------------------------- Variables --------------------------------*/
 
-let currentNote = null;          // a place to store the current note that the user needs to click
-let cpuArp = [];                 // a place to store the computer generated sequence in order starting with an empty array
-let playerArp = [];              // a place to store the player generated sequence in order starting with an empty array
+let currentNote = null;
+let cpuArp = [];
+let playerArp = [];
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -35,13 +32,6 @@ const keysElem = document.querySelectorAll('.white-key, .black-key');
 // const whiteKeysElem = document.getElementById('white-keys');
 const displayNoteElem = document.getElementById('display-note');
 
-// console.log(startBtnElem);
-// console.log(arpLengthElem);
-// console.log(msgElem);
-// console.log(blackKeysElem);
-// console.log(whiteKeysElem);
-// console.log(displayNoteElem);
-// console.log(keysElem);
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -56,17 +46,23 @@ function handleStartBtn() {                                              // func
     playerArp = [];                                                      // resets game, player starts with empty arpeggio array
     currentNote = getRandomNote();                                       // a random note is stored into currentNote with the getRandomNote() function
     cpuArp.push(currentNote);                                            // adds the currentNote to the cpuArp array                                                    
-    displayNoteElem.textContent = currentNote;                           // renders the currentNote onto the page through the displayNoteElem              
+    displayNoteElem.textContent = currentNote;                           // renders the currentNote onto the page through the displayNoteElem 
+    setTimeout(() => {                                                  // function to only display the note for 2 sec
+        displayNoteElem.textContent = '';                               //  sets the display to an empty string
+    }, 1000);                                                           // after 1000ms (1sec)             
     console.log(`cpu started with: ${currentNote}`)
     console.log(`cpu arp: ${cpuArp}`);
 };
 
-function handleCorrectNote() {                                         // function to handle next step when correct note is pressed
-    currentNote = getRandomNote();                                     // currentNote is now a new random note using getRandomNote
-    cpuArp.push(currentNote);                                          // the new note is stored in the cpuArp array 
+function handleCorrectNote() {
+    currentNote = getRandomNote();
+    cpuArp.push(currentNote);
     displayNoteElem.textContent = currentNote;
-    console.log(cpuArp);
-}
+    console.log(`cpuArp so far ${cpuArp}`)
+    setTimeout(() => {                                                  // function to only display the note for 2 sec
+        displayNoteElem.textContent = '';                               //  sets the display to an empty string
+    }, 1000);                                                           // after 1000ms (1sec)
+};
 
 
 function handleKeys(event) {
@@ -77,6 +73,11 @@ function handleKeys(event) {
         const note = event.target.getAttribute('data-note');
         playerArp.push(note);
         displayNoteElem.textContent = note;
+        console.log(`you pressed ${note}`)
+        setTimeout(() => {                                                  // function to only display the note for 2 sec
+            displayNoteElem.textContent = '';                               //  sets the display to an empty string
+        }, 1000);                                                           // after 1000ms (1sec)
+
 
         if (note !== cpuArp[playerArp.length - 1]) {                                                            // if player input !== the last note of the cpuArp
             console.log(`WRONG NOTE, expected ${cpuArp[playerArp.length - 1]} you pressed ${note}`);
@@ -86,30 +87,14 @@ function handleKeys(event) {
 
         if (playerArp.length === cpuArp.length) {                                                               // if player array === cpu array
             console.log(`CORRECT`);                                                                             // correct!
-            playerArp = [];
-            handleCorrectNote();
+            setTimeout(() => {
+                playerArp = [];
+                handleCorrectNote();
+            }, 1000);
+
         }
     }
-}
-
-// function handleBlackKeys(event) {
-//     if (event.target.classList.contains('black-key')) {
-//         const note = event.target.getAttribute('data-note');
-//         playerArp.push(note);
-//         displayNoteElem.textContent = note;
-
-//     } if (cpuArp.toString() === playerArp.toString()) {
-//         handleCorrectNote();
-
-//     } else if (cpuArp.toString() !== playerArp.toString()) {
-//         console.log(`INCORRECT try again!`)
-//         console.log(playerArp);
-//     }
-// };
-
-
-
-
+};
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -119,4 +104,3 @@ keysElem.forEach(key => {
     key.addEventListener('click', handleKeys);
 });
 
-// blackKeysElem.addEventListener('click', handleBlackKeys);
