@@ -30,8 +30,9 @@ let playerArp = [];              // a place to store the player generated sequen
 const startBtnElem = document.getElementById('start-btn');
 const arpLengthElem = document.querySelector('.sequence-count');
 const msgElem = document.getElementById('message');
-const blackKeysElem = document.getElementById('black-keys');
-const whiteKeysElem = document.getElementById('white-keys');
+const keysElem = document.querySelectorAll('.white-key, .black-key');
+// const blackKeysElem = document.getElementById('black-keys');
+// const whiteKeysElem = document.getElementById('white-keys');
 const displayNoteElem = document.getElementById('display-note');
 
 // console.log(startBtnElem);
@@ -40,6 +41,7 @@ const displayNoteElem = document.getElementById('display-note');
 // console.log(blackKeysElem);
 // console.log(whiteKeysElem);
 // console.log(displayNoteElem);
+// console.log(keysElem);
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -60,42 +62,45 @@ function handleStartBtn() {                                              // func
 };
 
 function handleCorrectNote() {                                         // function to handle next step when correct note is pressed
-    playerArp = [];                                                    // clears the player arp
     currentNote = getRandomNote();                                     // currentNote is now a new random note using getRandomNote
     cpuArp.push(currentNote);                                          // the new note is stored in the cpuArp array 
     displayNoteElem.textContent = currentNote;
-    console.log(`cpu played new note: ${currentNote}`)
-    console.log(`cpu arp: ${cpuArp}`);
+    console.log(cpuArp);
 }
 
-function handleWhiteKeys(event) {                                        // function to handle pressing the white keys
-    if (event.target.classList.contains('white-key')) {                  // if the button pressed containst the classList "white-key"
-        const note = event.target.getAttribute('data-note');             // store the attribute of 'data-note' in the variable 'note'
+
+function handleKeys(event) {
+    if (event.target.classList.contains('white-key') || event.target.classList.contains('black-key')) {
+        const note = event.target.getAttribute('data-note');
         playerArp.push(note);
         displayNoteElem.textContent = note;
+        // console.log(note);
+        // console.log(playerArp);
 
-    } if (cpuArp.toString() === playerArp.toString()) {
-        handleCorrectNote();
+        if (playerArp.length === cpuArp.length) {
+            console.log(`${note} is correct!`);
+            handleCorrectNote();
+        // } else {
+        //     console.log(`you pressed the wrong note`);
 
-        // } else if (cpuArp !== playerArp) {
-        //     console.log(`INCORRECT! cpu played: ${currentNote}, you clicked: ${note}`)
+        }
     }
 };
 
+// function handleBlackKeys(event) {
+//     if (event.target.classList.contains('black-key')) {
+//         const note = event.target.getAttribute('data-note');
+//         playerArp.push(note);
+//         displayNoteElem.textContent = note;
 
-function handleBlackKeys(event) {
-    if (event.target.classList.contains('black-key')) {
-        const note = event.target.getAttribute('data-note');
-        playerArp.push(note); //test
-        displayNoteElem.textContent = note;
+//     } if (cpuArp.toString() === playerArp.toString()) {
+//         handleCorrectNote();
 
-    } if (cpuArp.toString() === playerArp.toString()) {
-        console.log(`CORRECT player arp: ${playerArp}`);
-        handleCorrectNote();
-        // } else if (cpuArp !== playerArp) {
-        //     console.log(`INCORRECT! cpu played: ${currentNote}, you clicked: ${note}`)
-    }
-};
+//     } else if (cpuArp.toString() !== playerArp.toString()) {
+//         console.log(`INCORRECT try again!`)
+//         console.log(playerArp);
+//     }
+// };
 
 
 
@@ -105,6 +110,8 @@ function handleBlackKeys(event) {
 
 startBtnElem.addEventListener('click', handleStartBtn);
 
-whiteKeysElem.addEventListener('click', handleWhiteKeys);
+keysElem.forEach(key => {
+    key.addEventListener('click', handleKeys);
+});
 
-blackKeysElem.addEventListener('click', handleBlackKeys);
+// blackKeysElem.addEventListener('click', handleBlackKeys);
