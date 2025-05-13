@@ -29,8 +29,6 @@ const startBtnElem = document.getElementById('start-btn');
 const arpLengthElem = document.querySelector('.sequence-count');
 const msgElem = document.getElementById('message');
 const keysElem = document.querySelectorAll('.white-key, .black-key');
-// const blackKeysElem = document.getElementById('black-keys');
-// const whiteKeysElem = document.getElementById('white-keys');
 const displayNoteElem = document.getElementById('display-note');
 const splashScreen = document.getElementById('splash-screen');
 const startGameBtn = document.getElementById('lets-go');
@@ -66,6 +64,7 @@ function playNote(note) {
 };
 
 function handleStartBtn() {
+    startBtnElem.textContent = 'Meow!';
     arpLengthElem.textContent = `Arpeggio Length: `;
     displayMessage(`Let's go!`);
     currentNote = null;
@@ -105,6 +104,9 @@ function playCpuSequence(sequence, callback) {
 
 function handleCorrectNote() {
     arpLengthElem.textContent = `Arpeggio Length: ${cpuArp.length}`;
+    if (cpuArp.length === 9) {
+        displayMessage(`Congratulations, you're a memory arpeggiator master! See how much further you can get!`)
+    }
     currentNote = getRandomNote();
     cpuArp.push(currentNote);
     playCpuSequence(cpuArp, () => {
@@ -133,6 +135,7 @@ function handleKeys(event) {
 
         if (note !== cpuArp[playerArp.length - 1]) {
             playerArp = [];
+            startBtnElem.textContent = 'Go!';
             arpLengthElem.textContent = `${cpuArp.length} note arpeggio, wow!`;
             displayMessage(`Game over ☠️`);
             return;
