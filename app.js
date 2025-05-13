@@ -120,7 +120,7 @@ function handleKeys(event) {
         if (note !== cpuArp[playerArp.length - 1]) {
             console.log(`WRONG NOTE, expected ${cpuArp[playerArp.length - 1]} you pressed ${note}`);
             playerArp = [];
-            arpLengthElem.textContent = 'Arpeggio Length: 0';
+            arpLengthElem.textContent = `Great Job! ${cpuArp.length} note arpeggio, wow!`;
             return;
         }
 
@@ -134,6 +134,12 @@ function handleKeys(event) {
         }
     }
 };
+
+function displayMessage(text, type = 'info') {
+    msgElem.textContent = text;
+    msgElem.className = 'message';
+    msgElem.classList.add(type);
+}
 
 
 
