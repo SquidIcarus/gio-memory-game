@@ -1,8 +1,10 @@
-# GIO
+# GIO the meowmory arpeggimeow
+
+[GIO! The Memory Arpeggiator](https://squidicarus.github.io/gio-memory-game/)
 
 ## A Browser-based memory game
 
-This is a simple musical memory based game. The goal is to mimic the sequence that is randomly generated on one octave of the piano 🎹. Start the game, and see how far you can go with the randomly generated arpeggio! Good luck, have fun!
+This is a simple musical memory based game 🐱‍👓. The goal is to mimic the sequence that Gio randomly generates on one octave of the piano 🎹. Start the game, and see how far you can keep up with Gio's randomly generated arpeggio! Good luck, have fun and nap in the sun later or whatever!
 
 This game is named after Gio the cat, one of the sweetest and most dapper cats to wear pants. Arpeggio by name, Gio for short. He was a good dude and a music lover too. His melodies are random, chaotic and sometimes sugary. May you find inspiration in his pianic pluckings.
 
@@ -10,13 +12,15 @@ This game is named after Gio the cat, one of the sweetest and most dapper cats t
 
 ### Instructions:
 
-* Press **Go!** to start the sequence. 🚀  
+* Press **Go!** to start the sequence. 🐱‍🚀  
 
 * The sequence will start with one note on the piano. Play that same note by clicking on the piano key.
 
 * The sequence will then play the same note, followed by a new note.
 
 * Mimic the sequence by clicking each note in order on the piano. 
+
+* Don't get distracted, or do, or wait... whats that overthere?!
 
 * The sequence will continue adding one new note after each turn
 
