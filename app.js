@@ -21,7 +21,7 @@ const pianoNotes = [
 let currentNote = null;
 let cpuArp = [];
 let playerArp = [];
-let computerSpeed = 500;  // set the computer speed to 500ms
+// let computerSpeed = 500; // holding for future speed option
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -74,7 +74,7 @@ function handleStartBtn() {
     cpuArp.push(currentNote);
     displayNoteElem.textContent = currentNote;
     keyLight(currentNote);
-    playNote(currentNote);                                                 // triggers the playNote() to play audio when cpu plays a note                                        
+    playNote(currentNote);
     setTimeout(() => {
         displayNoteElem.textContent = '';
         keyLightOff(currentNote);
@@ -126,7 +126,6 @@ function handleKeys(event) {
         displayNoteElem.textContent = note;
         keyLight(note);
         playNote(note);
-        console.log(`you pressed ${note}`)
         setTimeout(() => {
             displayNoteElem.textContent = '';
             keyLightOff(note);
