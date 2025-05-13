@@ -36,22 +36,30 @@ const displayNoteElem = document.getElementById('display-note');
 
 /*-------------------------------- Functions --------------------------------*/
 
-function getRandomNote() {                                               // function to generate a random note
-    const randomIndex = Math.floor(Math.random() * pianoNotes.length);   // stores the random note using Math.floor method in randomIndex
-    return pianoNotes[randomIndex].note;                                 // returns the note being played from the .note property of the pianoNotes array of note objects
+function getRandomNote() {
+    const randomIndex = Math.floor(Math.random() * pianoNotes.length);
+    return pianoNotes[randomIndex].note;
 };
 
-function keyLight(note) {                                                // function to highlight a note when it is played
-    const key = document.querySelector(`[data-note="${note}"]`);         // caches the data-note="note" selector, stores in 'key'.
-    if (key) {                                                           // verifies the key 'data-note' element
-        key.classList.add('active');                                     // adds the CSS class 'active' to the element
+function keyLight(note) {
+    const key = document.querySelector(`[data-note="${note}"]`);
+    if (key) {
+        key.classList.add('active');
     }
 };
 
-function keyLightOff(note) {                                          // function to remove the highlight
+function keyLightOff(note) {
     const key = document.querySelector(`[data-note="${note}"]`);
     if (key) {
         key.classList.remove('active');
+    }
+};
+
+function playNote(note) {                                       // function to play the note when key is pressed
+    const audio = document.getElementById(note);              // selects the audio based on the 'note' property from the pianoNotes array to match the ids w/ note names
+    if (audio) {                                               // verifies the audio element
+        audio.currentTime = 0;                                  // resets audio playback to start from the beginning 
+        audio.play()                                            // plays the audio file
     }
 };
 
@@ -62,10 +70,11 @@ function handleStartBtn() {
     currentNote = getRandomNote();
     cpuArp.push(currentNote);
     displayNoteElem.textContent = currentNote;
-    keyLight(currentNote);                                              // uses the keyLight function to highlight the key
-    setTimeout(() => {                                                  // function to only display the note for 500ms
+    keyLight(currentNote);
+    playNote(currentNote);                                                 // triggers the playNote() to play audio when cpu plays a note                                        
+    setTimeout(() => {
         displayNoteElem.textContent = '';
-        keyLightOff(currentNote);                                       // remove highlight after 500ms
+        keyLightOff(currentNote);
     }, 500);
     console.log(`cpu started with: ${currentNote}`)
     console.log(`cpu arp: ${cpuArp}`);
@@ -79,6 +88,7 @@ function handleCorrectNote() {
         cpuArp.push(currentNote);
         displayNoteElem.textContent = currentNote;
         keyLight(currentNote);
+        playNote(currentNote);                                              // triggers playNote() when cpu plays a new note
         console.log(`cpuArp so far ${cpuArp}`)
         setTimeout(() => {
             displayNoteElem.textContent = '';
@@ -97,6 +107,7 @@ function handleKeys(event) {
         playerArp.push(note);
         displayNoteElem.textContent = note;
         keyLight(note);
+        playNote(note);                             // triggers playNote() when player presses a key
         console.log(`you pressed ${note}`)
         setTimeout(() => {
             displayNoteElem.textContent = '';
