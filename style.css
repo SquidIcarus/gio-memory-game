@@ -47,19 +47,28 @@ header {
     background-color: rgb(30, 107, 56);
 }
 
-.controls {
-    font-family: "Bangers", system-ui;
+.controls-container {
+   font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
     font-size: 30px;
 }
 
-.message {
+/* .controls {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
     font-size: 30px;
+} */
+
+
+.message {
+     font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
 }
+
 
 .piano {
     position: relative;

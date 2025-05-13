@@ -55,17 +55,17 @@ function keyLightOff(note) {
     }
 };
 
-function playNote(note) {                                       // function to play the note when key is pressed
-    console.log(`attempting to play note: ${note}`)
-    const audio = document.getElementById(note);              // selects the audio based on the 'note' property from the pianoNotes array to match the ids w/ note names
-    console.log(`audio element found:`, audio);
-    if (audio) {                                               // verifies the audio element
-        audio.currentTime = 0;                                  // resets audio playback to start from the beginning 
-        audio.play()                                            // plays the audio file
+function playNote(note) {
+    const audio = document.getElementById(note);
+    if (audio) {
+        audio.currentTime = 0;
+        audio.play()
     }
 };
 
 function handleStartBtn() {
+    arpLengthElem.textContent = `Arpeggio Length: `;
+    displayMessage(`Let's go!`);
     currentNote = null;
     cpuArp = [];
     playerArp = [];
@@ -78,8 +78,6 @@ function handleStartBtn() {
         displayNoteElem.textContent = '';
         keyLightOff(currentNote);
     }, 500);
-    console.log(`cpu started with: ${currentNote}`)
-    console.log(`cpu arp: ${cpuArp}`);
 };
 
 function handleCorrectNote() {
@@ -90,8 +88,7 @@ function handleCorrectNote() {
         cpuArp.push(currentNote);
         displayNoteElem.textContent = currentNote;
         keyLight(currentNote);
-        playNote(currentNote);                                              // triggers playNote() when cpu plays a new note
-        console.log(`cpuArp so far ${cpuArp}`)
+        playNote(currentNote);                                              // triggers playNote() when cpu plays a new note        
         setTimeout(() => {
             displayNoteElem.textContent = '';
             keyLightOff(currentNote);
@@ -106,6 +103,7 @@ function handleKeys(event) {
 
     if (event.target.classList.contains('white-key') || event.target.classList.contains('black-key')) {
         const note = event.target.getAttribute('data-note');
+        displayMessage(`Good Luck!`);
         playerArp.push(note);
         displayNoteElem.textContent = note;
         keyLight(note);
@@ -118,14 +116,13 @@ function handleKeys(event) {
 
 
         if (note !== cpuArp[playerArp.length - 1]) {
-            console.log(`WRONG NOTE, expected ${cpuArp[playerArp.length - 1]} you pressed ${note}`);
             playerArp = [];
             arpLengthElem.textContent = `Great Job! ${cpuArp.length} note arpeggio, wow!`;
+            displayMessage(`Game over ☠️`);
             return;
         }
 
         if (playerArp.length === cpuArp.length) {
-            console.log(`CORRECT`);
             setTimeout(() => {
                 playerArp = [];
                 handleCorrectNote();
