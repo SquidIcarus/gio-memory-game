@@ -137,7 +137,7 @@ function handleKeys(event) {
             playerArp = [];
             startBtnElem.textContent = 'Go!';
             arpLengthElem.textContent = `${cpuArp.length} note arpeggio, wow!`;
-            displayMessage(`Game over ☠️`);
+            displayMessage(`Game over 😿`);
             return;
         }
 
