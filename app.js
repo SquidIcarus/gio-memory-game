@@ -56,7 +56,9 @@ function keyLightOff(note) {
 };
 
 function playNote(note) {                                       // function to play the note when key is pressed
+    console.log(`attempting to play note: ${note}`)
     const audio = document.getElementById(note);              // selects the audio based on the 'note' property from the pianoNotes array to match the ids w/ note names
+    console.log(`audio element found:`, audio);
     if (audio) {                                               // verifies the audio element
         audio.currentTime = 0;                                  // resets audio playback to start from the beginning 
         audio.play()                                            // plays the audio file
@@ -115,14 +117,15 @@ function handleKeys(event) {
         }, 500);
 
 
-        if (note !== cpuArp[playerArp.length - 1]) {                                                            // if player input !== the last note of the cpuArp
+        if (note !== cpuArp[playerArp.length - 1]) {
             console.log(`WRONG NOTE, expected ${cpuArp[playerArp.length - 1]} you pressed ${note}`);
-            playerArp = [];                                                                                     // Resets player sequence
-            return;                                                                                             // stops the function if the note played !== the last note of the array
+            playerArp = [];
+            arpLengthElem.textContent = 'Arpeggio Length: 0';
+            return;
         }
 
-        if (playerArp.length === cpuArp.length) {                                                               // if player array === cpu array
-            console.log(`CORRECT`);                                                                             // correct!
+        if (playerArp.length === cpuArp.length) {
+            console.log(`CORRECT`);
             setTimeout(() => {
                 playerArp = [];
                 handleCorrectNote();

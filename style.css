@@ -123,6 +123,11 @@ header {
     margin-left: 5%;
 }
 
+footer {
+    height: 80px;
+    overflow: hidden;
+}
+
 .display-note {
     display: flex;
     flex-direction: column;
@@ -130,15 +135,13 @@ header {
     padding: 10px 25px;
     font-size: 60px;
     margin-bottom: 15px;
-    border-style: solid;
-    border-radius: 15px;
-    border-width: 3px;
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
     transition: text 0.2s ease;
 }
 
-.white-key.active, .black-key.active {
+.white-key.active,
+.black-key.active {
     background-color: #fb7e7e;
 }
