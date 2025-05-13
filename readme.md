@@ -28,6 +28,10 @@ This is a simple musical memory based game. The goal is to mimic the sequence th
 - HTML
 - CSS
 - JavaScript
+- Focusrite Scarlett 2i4
+- Ableton Live 10
+- Roland Juno-DS
+- Photoshop xpress
 
 [Copyright © 2025 Landon Leadford](LICENSE.md)
 

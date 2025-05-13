@@ -32,6 +32,8 @@ const keysElem = document.querySelectorAll('.white-key, .black-key');
 // const blackKeysElem = document.getElementById('black-keys');
 // const whiteKeysElem = document.getElementById('white-keys');
 const displayNoteElem = document.getElementById('display-note');
+const splashScreen = document.getElementById('splash-screen');
+const startGameBtn = document.getElementById('lets-go');
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -117,7 +119,7 @@ function handleKeys(event) {
 
         if (note !== cpuArp[playerArp.length - 1]) {
             playerArp = [];
-            arpLengthElem.textContent = `Great Job! ${cpuArp.length} note arpeggio, wow!`;
+            arpLengthElem.textContent = `${cpuArp.length} note arpeggio, wow!`;
             displayMessage(`Game over ☠️`);
             return;
         }
@@ -148,3 +150,8 @@ keysElem.forEach(key => {
     key.addEventListener('click', handleKeys);
 });
 
+startGameBtn.addEventListener('click', () => {
+    splashScreen.style.display = 'none';
+    document.querySelector('main').classList.add('show-game');
+    document.querySelector('footer').classList.add('show-game');
+});
