@@ -82,20 +82,34 @@ function handleStartBtn() {
     }, 500);
 };
 
+function playCpuSequence(sequence, callback) {
+    let index = 0;
+    function playNextNote() {
+        if (index < sequence.length) {
+            const note = sequence[index];
+            displayNoteElem.textContent = note;
+            keyLight(note);
+            playNote(note);
+            setTimeout(() => {
+                keyLightOff(note);
+                displayNoteElem.textContent = '';
+                index++;
+                setTimeout(playNextNote, 300);
+            }, 500);
+        } else if (callback) {
+            callback();
+        }
+    }
+    setTimeout(playNextNote, 300);
+};
+
 function handleCorrectNote() {
     arpLengthElem.textContent = `Arpeggio Length: ${cpuArp.length}`;
-
-    setTimeout(() => {                                                     // wraps the block in the function to set the computer speed to 500
-        currentNote = getRandomNote();
-        cpuArp.push(currentNote);
-        displayNoteElem.textContent = currentNote;
-        keyLight(currentNote);
-        playNote(currentNote);                                              // triggers playNote() when cpu plays a new note        
-        setTimeout(() => {
-            displayNoteElem.textContent = '';
-            keyLightOff(currentNote);
-        }, 500);
-    }, computerSpeed);                                                      // variable that stores the speed, currently at 500
+    currentNote = getRandomNote();
+    cpuArp.push(currentNote);
+    playCpuSequence(cpuArp, () => {
+        playerArp = [];
+    })
 };
 
 
@@ -109,7 +123,7 @@ function handleKeys(event) {
         playerArp.push(note);
         displayNoteElem.textContent = note;
         keyLight(note);
-        playNote(note);                             // triggers playNote() when player presses a key
+        playNote(note);
         console.log(`you pressed ${note}`)
         setTimeout(() => {
             displayNoteElem.textContent = '';

@@ -87,7 +87,7 @@ footer {
 }
 
 body {
-    background-color: #008080
+    background-color: #008080;
 }
 
 header {
@@ -256,5 +256,5 @@ footer {
 
 .white-key.active,
 .black-key.active {
-    background-color: #800020;
+    background-color: #f692ab;
 }
