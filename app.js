@@ -99,13 +99,23 @@ function playCpuSequence(sequence, callback) {
             callback();
         }
     }
-    setTimeout(playNextNote, 300);
+    setTimeout(playNextNote, 500);
+    console.log(cpuArp);
 };
 
 function handleCorrectNote() {
     arpLengthElem.textContent = `Arpeggio Length: ${cpuArp.length}`;
+    if (cpuArp.length === 1) {
+        displayMessage('Good Luck!')
+    }
+    if (cpuArp.length === 3) {
+        displayMessage('Keep it up!🐾')
+    }
+    if (cpuArp.length === 5) {
+        displayMessage('Mewow! Look at you go!🐱‍🏍')
+    }
     if (cpuArp.length === 9) {
-        displayMessage(`Congratulations, you're a memory arpeggiator master! See how much further you can get!`)
+        displayMessage(`Ameowzing! You're a memory arpeggiator master!`)
     }
     currentNote = getRandomNote();
     cpuArp.push(currentNote);
@@ -121,7 +131,6 @@ function handleKeys(event) {
 
     if (event.target.classList.contains('white-key') || event.target.classList.contains('black-key')) {
         const note = event.target.getAttribute('data-note');
-        displayMessage(`Good Luck!`);
         playerArp.push(note);
         displayNoteElem.textContent = note;
         keyLight(note);
