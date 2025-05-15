@@ -77,9 +77,14 @@
     transform: scale(0.95);
 }
 
-main,
+/* main,
 footer {
     display: none;
+} */
+
+
+.main {
+    display: flex;
 }
 
 .show-game {
@@ -88,13 +93,14 @@ footer {
 
 body {
     background-color: #008080;
+    overflow-x: hidden;
 }
 
 header {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    padding: 2vh 0;
 }
 
 .header1 {
@@ -103,7 +109,7 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 75px;
+    font-size: 12vw;
     margin-bottom: 2px;
     color: #FFDB58;
 }
@@ -114,7 +120,7 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 50px;
+    font-size: 8vw;
     margin-top: 2px;
     color: #DBA400
 }
@@ -123,8 +129,8 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px 5px;
-    font-size: 30px;
+    padding: 2vw 4vw;
+    font-size: 5vw;
     margin-bottom: 15px;
     cursor: grab;
     border-style: solid;
@@ -147,12 +153,18 @@ header {
     background-color: #DBA400
 }
 
+/* .controls-container {
+    display: flex;
+    flex-direction: row;
+} */
+
 .sequence-count {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 20px;
-    margin-left: 150px;
+    font-size: 4vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
     color: #DBA400
 }
 
@@ -160,19 +172,20 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 20px;
+    font-size: 4vw;
     float: right;
-    margin-right: 175px;
+    margin-right: 5vw;
     color: #DBA400
 }
 
-
 .piano {
     position: relative;
-    width: 500px;
-    height: 200px;
+    width: 90vw;
+    max-width: 500px;
+    height: 40vw;
+    max-height: 200px;
     margin: 20px auto;
-    margin-top: 50px;
+    margin-top: 5vh;
     background: #333;
     border-radius: 5px;
 }
@@ -183,12 +196,12 @@ header {
 }
 
 .black-keys {
+    display: flex;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 60%;
-    display: flex;
     padding: 0 2%;
 }
 
@@ -200,6 +213,9 @@ header {
     margin: 0 1px;
     z-index: 1;
     transition: background-color 0.2s ease;
+    height: 100%;
+    min-height: auto;
+    min-width: auto;
 }
 
 .black-key {
@@ -210,31 +226,32 @@ header {
     margin: 0 2%;
     z-index: 2;
     transition: background-color 0.2s ease;
+    min-width: auto;
 }
 
 /* C# */
 .black-key:nth-child(1) {
-    margin-left: 8%;
+    margin-left: 7%;
 }
 
 /* D# */
 .black-key:nth-child(2) {
-    margin-left: 5%;
+    margin-left: 7%;
 }
 
 /* F# */
 .black-key:nth-child(3) {
-    margin-left: 17%;
+    margin-left: 16%;
 }
 
 /* G# */
 .black-key:nth-child(4) {
-    margin-left: 5%;
+    margin-left: 5.5%;
 }
 
 /* A# */
 .black-key:nth-child(5) {
-    margin-left: 5%;
+    margin-left: 6%;
 }
 
 footer {
@@ -247,7 +264,7 @@ footer {
     flex-direction: column;
     align-items: center;
     padding: 10px 25px;
-    font-size: 60px;
+    font-size: 10vw;
     margin-bottom: 15px;
     font-family: "Bangers", system-ui;
     font-weight: 400;
