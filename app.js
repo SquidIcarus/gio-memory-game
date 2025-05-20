@@ -15,6 +15,8 @@ const pianoNotes = [
     { note: 'B', type: 'white' }
 ];
 
+const maxHighScores = 5;
+const highScoresKey = 'gioHighScores';
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -22,6 +24,7 @@ let currentNote = null;
 let cpuArp = [];
 let playerArp = [];
 // let computerSpeed = 500; // holding for future speed option
+let highScores = [];
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -32,6 +35,10 @@ const keysElem = document.querySelectorAll('.white-key, .black-key');
 const displayNoteElem = document.getElementById('display-note');
 const splashScreen = document.getElementById('splash-screen');
 const startGameBtn = document.getElementById('lets-go');
+const highScoresListElem = document.getElementById('high-scores-list');
+
+console.log(localStorage);
+console.dir(highScoresListElem);
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -83,6 +90,7 @@ function handleStartBtn() {
 
 function playCpuSequence(sequence, callback) {
     let index = 0;
+    console.log(cpuArp)
     function playNextNote() {
         if (index < sequence.length) {
             const note = sequence[index];

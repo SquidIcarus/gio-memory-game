@@ -162,7 +162,7 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 4vw;
+    font-size: 2vw;
     margin-left: 5vw;
     margin-right: 5vw;
     color: #DBA400
@@ -172,7 +172,7 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 4vw;
+    font-size: 2vw;
     float: right;
     margin-right: 5vw;
     color: #DBA400
@@ -276,3 +276,32 @@ footer {
 .black-key.active {
     background-color: #f692ab;
 }
+
+.high-scores {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 300px;
+    text-align: center;
+}
+
+.high-scores h3 {
+    color: #FFDB58;
+    font-family: "Bangers", system-ui;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+#high-scores-list {
+    color: white;
+    font-family: Arial, sans-serif;
+    padding-left: 20px;
+    text-align: left;
+}
+
+#high-scores-list li {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
