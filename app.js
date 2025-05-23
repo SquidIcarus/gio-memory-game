@@ -36,9 +36,11 @@ const displayNoteElem = document.getElementById('display-note');
 const splashScreen = document.getElementById('splash-screen');
 const startGameBtn = document.getElementById('lets-go');
 const highScoresListElem = document.getElementById('high-scores-list');
+const highScoreModal = document.getElementById('high-score-modal');
+const nameInput = document.getElementById('name-input');
+const submitScoreBtn = document.getElementById('submit-score');
+const modalMessage = document.getElementById('modal-message');
 
-console.log(localStorage);
-console.dir(highScoresListElem);
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -174,10 +176,15 @@ function displayMessage(text, type = 'info') {
     msgElem.classList.add(type);
 };
 
-function loadHighScores() {                                 //loads saved scores
-    const saved = localStorage.getItem(highScoresKey);
-    highScores = saved ? JSON.parse(saved) : [];
-    renderHighScores();
+function loadHighScores() {
+    try {
+        const saved = localStorage.getItem(highScoresKey);
+        highScores = saved ? JSON.parse(saved) : [];
+        renderHighScores();
+     } catch (e) {
+        console.error('Error loading high scores:', e);
+        highScores = [];
+     }
 };
 
 function renderHighScores() {
@@ -187,7 +194,7 @@ function renderHighScores() {
         highScoresListElem.innerHTML = '<li>No scores yet!</li>';
         return;
     }
-    
+
     highScores.forEach((score, index) => {
         const li = document.createElement('li');
         li.textContent = `${score.name}: ${score.score} notes`;
@@ -197,18 +204,30 @@ function renderHighScores() {
 
 
 function checkHighScore(score) {
-    if (highScores.length < maxHighScores || score > highScores[highScores.length-1]?.scores) {
-        const name = prompt(`New high score! (${score} notes)\nEnter your name:`) || `Anonyous`;
-        saveHighScore(name, score);
+    if (highScores.length < maxHighScores || score > highScores[highScores.length - 1]?.scores) {
+        modalMessage.textContent = `New high score! ${score} notes)`;
+        nameInput.value = '';
+        highScoreModal.style.display = 'flex';
+        nameInput.focus();
+
+        let currentScore = score;
+        submitScoreBtn.onclick = function () {
+            const name = nameInput.value.trim() || 'Anonymous';
+            saveHighScore(name, currentScore);
+            highScoreModal.style.display = 'none':
+
+        };
     }
 };
 
 function saveHighScore(name, score) {
     highScores.push({ name, score });
-    highScores.sort((a,b) => b.score - a.score);
+    highScores.sort((a, b) => b.score - a.score);
     highScores = highScores.slice(0, maxHighScores);
     localStorage.setItem(highScoresKey, JSON.stringify(highScores));
     renderHighScores();
+} catch (e) {
+    console.error('Error saving high score:', e);
 }
 
 
@@ -218,6 +237,7 @@ startBtnElem.addEventListener('click', handleStartBtn);
 
 keysElem.forEach(key => {
     key.addEventListener('click', handleKeys);
+    key.addEventListener('touched', handleKeys);
 });
 
 startGameBtn.addEventListener('click', () => {
