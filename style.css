@@ -77,11 +77,6 @@
     transform: scale(0.95);
 }
 
-/* main,
-footer {
-    display: none;
-} */
-
 
 .main {
     display: flex;

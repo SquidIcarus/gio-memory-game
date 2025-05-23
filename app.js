@@ -214,22 +214,23 @@ function checkHighScore(score) {
         submitScoreBtn.onclick = function () {
             const name = nameInput.value.trim() || 'Anonymous';
             saveHighScore(name, currentScore);
-            highScoreModal.style.display = 'none':
+            highScoreModal.style.display = 'none';
 
         };
     }
 };
 
 function saveHighScore(name, score) {
+  try {
     highScores.push({ name, score });
     highScores.sort((a, b) => b.score - a.score);
     highScores = highScores.slice(0, maxHighScores);
     localStorage.setItem(highScoresKey, JSON.stringify(highScores));
     renderHighScores();
-} catch (e) {
+  } catch (e) {
     console.error('Error saving high score:', e);
-}
-
+  }
+};
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -237,13 +238,13 @@ startBtnElem.addEventListener('click', handleStartBtn);
 
 keysElem.forEach(key => {
     key.addEventListener('click', handleKeys);
-    key.addEventListener('touched', handleKeys);
+    key.addEventListener('touchend', handleKeys);
 });
 
 startGameBtn.addEventListener('click', () => {
     splashScreen.style.display = 'none';
-    document.querySelector('main').classList.add('show-game');
-    document.querySelector('footer').classList.add('show-game');
+    document.querySelector('main').style.display = 'block';
+    document.querySelector('footer').style.display = 'block';
 });
 
 loadHighScores();
