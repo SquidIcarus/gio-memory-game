@@ -162,7 +162,7 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 2vw;
+    font-size: 3vw;
     margin-left: 5vw;
     margin-right: 5vw;
     color: #DBA400
@@ -172,10 +172,14 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 2vw;
+    font-size: 3vw;
     float: right;
     margin-right: 5vw;
     color: #DBA400
+}
+
+.game-body {
+    margin-top: 35px;
 }
 
 .piano {
@@ -255,8 +259,10 @@ header {
 }
 
 footer {
-    height: 80px;
-    overflow: hidden;
+    display: block !important; 
+    height: auto; 
+    padding: 20px 0; 
+    overflow: visible; 
 }
 
 .display-note {
@@ -281,6 +287,7 @@ footer {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 15px;
     border-radius: 10px;
+    margin-top: 2px;
     margin: 20px auto;
     max-width: 300px;
     text-align: center;
@@ -298,6 +305,7 @@ footer {
     font-family: Arial, sans-serif;
     padding-left: 20px;
     text-align: left;
+    font-family: "Bangers", system-ui;
 }
 
 #high-scores-list li {

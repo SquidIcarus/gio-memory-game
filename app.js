@@ -15,8 +15,8 @@ const pianoNotes = [
     { note: 'B', type: 'white' }
 ];
 
-const maxHighScores = 5;
-const highScoresKey = 'gioHighScores';
+const maxHighScores = 5;                 // amount of scores to keep
+const highScoresKey = 'gioHighScores';   // key for localStorage
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -24,7 +24,7 @@ let currentNote = null;
 let cpuArp = [];
 let playerArp = [];
 // let computerSpeed = 500; // holding for future speed option
-let highScores = [];
+let highScores = [];        // array for holding high scores
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -90,7 +90,6 @@ function handleStartBtn() {
 
 function playCpuSequence(sequence, callback) {
     let index = 0;
-    console.log(cpuArp)
     function playNextNote() {
         if (index < sequence.length) {
             const note = sequence[index];
@@ -123,7 +122,7 @@ function handleCorrectNote() {
         displayMessage('Mewow! Look at you go!🐱‍🏍')
     }
     if (cpuArp.length === 9) {
-        displayMessage(`Ameowzing! You're a memory arpeggiator master!`)
+        displayMessage(`Ameowzing! You're a memory arpeggiator master! How much further can you go?`)
     }
     currentNote = getRandomNote();
     cpuArp.push(currentNote);
@@ -154,6 +153,8 @@ function handleKeys(event) {
             startBtnElem.textContent = 'Go!';
             arpLengthElem.textContent = `${cpuArp.length} note arpeggio, wow!`;
             displayMessage(`Game over 😿`);
+            const score = cpuArp.length - 1;
+            if (score > 0) checkHighScore(score);
             return;
         }
 
@@ -171,8 +172,44 @@ function displayMessage(text, type = 'info') {
     msgElem.textContent = text;
     msgElem.className = 'message';
     msgElem.classList.add(type);
-}
+};
 
+function loadHighScores() {                                 //loads saved scores
+    const saved = localStorage.getItem(highScoresKey);
+    highScores = saved ? JSON.parse(saved) : [];
+    renderHighScores();
+};
+
+function renderHighScores() {
+    const highScoresListElem = document.getElementById('high-scores-list');
+    highScoresListElem.innerHTML = '';
+    if (highScores.length === 0) {
+        highScoresListElem.innerHTML = '<li>No scores yet!</li>';
+        return;
+    }
+    
+    highScores.forEach((score, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${score.name}: ${score.score} notes`;
+        highScoresListElem.appendChild(li);
+    });
+};
+
+
+function checkHighScore(score) {
+    if (highScores.length < maxHighScores || score > highScores[highScores.length-1]?.scores) {
+        const name = prompt(`New high score! (${score} notes)\nEnter your name:`) || `Anonyous`;
+        saveHighScore(name, score);
+    }
+};
+
+function saveHighScore(name, score) {
+    highScores.push({ name, score });
+    highScores.sort((a,b) => b.score - a.score);
+    highScores = highScores.slice(0, maxHighScores);
+    localStorage.setItem(highScoresKey, JSON.stringify(highScores));
+    renderHighScores();
+}
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -188,3 +225,5 @@ startGameBtn.addEventListener('click', () => {
     document.querySelector('main').classList.add('show-game');
     document.querySelector('footer').classList.add('show-game');
 });
+
+loadHighScores();
