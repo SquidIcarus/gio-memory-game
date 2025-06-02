@@ -181,10 +181,10 @@ function loadHighScores() {
         const saved = localStorage.getItem(highScoresKey);
         highScores = saved ? JSON.parse(saved) : [];
         renderHighScores();
-     } catch (e) {
+    } catch (e) {
         console.error('Error loading high scores:', e);
         highScores = [];
-     }
+    }
 };
 
 function renderHighScores() {
@@ -221,15 +221,15 @@ function checkHighScore(score) {
 };
 
 function saveHighScore(name, score) {
-  try {
-    highScores.push({ name, score });
-    highScores.sort((a, b) => b.score - a.score);
-    highScores = highScores.slice(0, maxHighScores);
-    localStorage.setItem(highScoresKey, JSON.stringify(highScores));
-    renderHighScores();
-  } catch (e) {
-    console.error('Error saving high score:', e);
-  }
+    try {
+        highScores.push({ name, score });
+        highScores.sort((a, b) => b.score - a.score);
+        highScores = highScores.slice(0, maxHighScores);
+        localStorage.setItem(highScoresKey, JSON.stringify(highScores));
+        renderHighScores();
+    } catch (e) {
+        console.error('Error saving high score:', e);
+    }
 };
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -238,7 +238,6 @@ startBtnElem.addEventListener('click', handleStartBtn);
 
 keysElem.forEach(key => {
     key.addEventListener('click', handleKeys);
-    key.addEventListener('touchend', handleKeys);
 });
 
 startGameBtn.addEventListener('click', () => {
