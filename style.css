@@ -91,13 +91,15 @@
 body {
     background-color: #008080;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2vh 0;
+    padding: 1vh 0;
 }
 
 .header1 {
@@ -106,9 +108,11 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 12vw;
+    font-size: 4rem;
     margin-bottom: 2px;
+    margin-top: 5px;
     color: #FFDB58;
+    line-height: 1;
 }
 
 .header2 {
@@ -117,18 +121,20 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 8vw;
+    font-size: 2rem;
     margin-top: 2px;
-    color: #DBA400
+    margin-bottom: 5px;
+    color: #DBA400;
+    line-height: 1;
 }
 
 #start-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2vw 4vw;
-    font-size: 5vw;
-    margin-bottom: 15px;
+    padding: 8px 20px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
     cursor: grab;
     border-style: solid;
     border-radius: 15px;
@@ -150,16 +156,15 @@ header {
     background-color: #DBA400
 }
 
-/* .controls-container {
-    display: flex;
-    flex-direction: row;
-} */
+.controls-container {
+    margin-bottom: 10px;
+}
 
 .sequence-count {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 3vw;
+    font-size: 1.2rem;
     margin-left: 5vw;
     margin-right: 5vw;
     color: #DBA400
@@ -169,18 +174,18 @@ header {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 3vw;
+    font-size: 1.2rem;
     float: right;
     margin-right: 5vw;
     color: #DBA400
 }
 
 .game-body {
-    margin-top: 35px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .piano {
@@ -189,8 +194,7 @@ header {
     max-width: 500px;
     height: 40vw;
     max-height: 200px;
-    margin: 20px auto;
-    margin: 0 auto;
+    margin: 10px auto;
     background: #333;
     border-radius: 5px;
     order: 2;
@@ -263,23 +267,31 @@ header {
 footer {
     display: block !important;
     height: auto;
-    padding: 20px 0;
+    padding: 10px 0;
     overflow: visible;
 }
 
+
+.note-display-container {
+    min-height: 80px;
+    max-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
 
 .display-note {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 25px;
-    font-size: 10vw;
-    margin: 20px 0;
+    justify-content: center;
+    font-size: 3rem;
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
     transition: text 0.2s ease;
-    min-height: 15vh;
+    color: #FFDB58;
 }
 
 .white-key.active,
@@ -291,10 +303,80 @@ footer {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 15px;
     border-radius: 10px;
-    margin: 60px auto;
+    margin: 100px auto 20px;
     max-width: 300px;
     text-align: center;
     order: 3;
+    clear: both;
+}
+
+/* Desktop/Tablet optimization */
+@media (min-width: 768px) {
+    .note-display-container {
+        min-height: 80px;
+        max-height: 80px;
+    }
+    
+    .display-note {
+        font-size: 3.5rem;
+    }
+    
+    .piano {
+        max-width: 600px;
+        max-height: 220px;
+    }
+    
+    .high-scores {
+        margin: 120px auto 20px;
+    }
+    
+    .header1 {
+        font-size: 5rem;
+    }
+    
+    .header2 {
+        font-size: 2.5rem;
+    }
+    
+    #start-btn {
+        font-size: 2rem;
+        padding: 10px 25px;
+    }
+    
+    .sequence-count,
+    .message {
+        font-size: 1.3rem;
+    }
+}
+
+/* Mobile optimization */
+@media (max-width: 767px) {
+    .note-display-container {
+        min-height: 70px;
+        max-height: 70px;
+    }
+    
+    .display-note {
+        font-size: 2.5rem;
+    }
+    
+    .sequence-count,
+    .message {
+        font-size: 1rem;
+    }
+    
+    .header1 {
+        font-size: 3rem;
+    }
+    
+    .header2 {
+        font-size: 1.5rem;
+    }
+    
+    #start-btn {
+        font-size: 1.3rem;
+        padding: 6px 15px;
+    }
 }
 
 .high-scores h3 {
