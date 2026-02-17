@@ -204,7 +204,7 @@ function renderHighScores() {
 
 
 function checkHighScore(score) {
-    if (highScores.length < maxHighScores || score > highScores[highScores.length - 1]?.scores) {
+    if (highScores.length < maxHighScores || score > highScores[highScores.length - 1]?.score) {
         modalMessage.textContent = `New high score! ${score} notes)`;
         nameInput.value = '';
         highScoreModal.style.display = 'flex';
